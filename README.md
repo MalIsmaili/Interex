@@ -1,2 +1,2 @@
 # Interex
-Supermarket page not finished
+This is a page to Interex Supermarket this project is still not finished
