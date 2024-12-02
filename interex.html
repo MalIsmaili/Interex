@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interex Supermarketi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #d50000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        .navbar {
+            background-color: #b30000;
+            overflow: hidden;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            padding: 14px 20px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .category {
+            margin-top: 20px;
+        }
+        .category h2 {
+            color: #b30000;
+            border-bottom: 2px solid #b30000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .product-card {
+            background-color: white;
+            width: 250px;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: inline-block;
+        }
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .product-card h3 {
+            font-size: 20px;
+            color: #d50000;
+        }
+        .product-card p {
+            color: #555;
+            font-size: 16px;
+        }
+        .button {
+            background-color: #d50000;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background-color: #9e0000;
+        }
+        footer {
+            background-color: #b30000;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .cart {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #d50000;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .checkout {
+            display: none;
+            background-color: #fff;
+            width: 50%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .checkout input,
+        .checkout button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .cart-summary {
+            background-color: #f1f1f1;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Interex Supermarket</h1>
+        <p>Pakicë dhe produkte të freskëta</p>
+    </header>
+
+    <div class="navbar">
+        <a href="#">Ballina</a>
+        <a href="#">Produkte</a>
+        <a href="contact.html">Kontakt</a>
+        <a href="rreth-nesh.html">Rreth Nesh</a>
+        <a href="javascript:void(0);" onclick="viewCart()">Shporta</a>
+    </div>
+    
+
+    <div class="cart" id="cart">0</div>
+
+    <div class="main-content">
+        <div class="category">
+            <h2>Fruta dhe Perime</h2>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/250x150" alt="Product 1">
+                <h3>Perime të Freskëta</h3>
+                <p>500g - 1.20€</p>
+                <button class="button" onclick="addToCart('Perime të Freskëta', 1.20)">Shto në Shportë</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/250x150" alt="Product 2">
+                <h3>Fruta të Freskëta</h3>
+                <p>1kg - 2.50€</p>
+                <button class="button" onclick="addToCart('Fruta të Freskëta', 2.50)">Shto në Shportë</button>
+            </div>
+        </div>
+
+        <div class="category">
+            <h2>Produkte të Pjekura</h2>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/250x150" alt="Product 3">
+                <h3>Arrë të Pjekura</h3>
+                <p>100g - 2.50€</p>
+                <button class="button" onclick="addToCart('Arrë të Pjekura', 2.50)">Shto në Shportë</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/250x150" alt="Product 4">
+                <h3>Panine dhe Buke</h3>
+                <p>1 copë - 1.00€</p>
+                <button class="button" onclick="addToCart('Panine dhe Buke', 1.00)">Shto në Shportë</button>
+            </div>
+        </div>
+
+        <div class="category">
+            <h2>Produkte të Mishi</h2>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/250x150" alt="Product 5">
+                <h3>Mish i Pjekur</h3>
+                <p>500g - 5.00€</p>
+                <button class="button" onclick="addToCart('Mish i Pjekur', 5.00)">Shto në Shportë</button>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/250x150" alt="Product 6">
+                <h3>Fileto Peshku</h3>
+                <p>200g - 3.50€</p>
+                <button class="button" onclick="addToCart('Fileto Peshku', 3.50)">Shto në Shportë</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Interex Supermarket. Të drejtat e rezervuara.</p>
+    </footer>
+
+    <div class="checkout" id="checkout">
+        <h2>Fatura dhe Checkout</h2>
+        <p>Totali: <span id="totalPrice">0.00€</span></p>
+        <label for="name">Emri</label>
+        <input type="text" id="name" placeholder="Emri juaj" required>
+        <label for="address">Adresa</label>
+        <input type="text" id="address" placeholder="Adresa juaj" required>
+        <button onclick="completeCheckout()">Përfundoni Blerjen</button>
+    </div>
+
+    <div class="cart-summary" id="cartSummary"></div>
+
+    <script>
+        let cart = [];
+        let totalPrice = 0;
+
+        function addToCart(productName, price) {
+            cart.push({ productName, price });
+            totalPrice += price;
+            document.getElementById('cart').innerText = cart.length;
+            document.getElementById('totalPrice').innerText = totalPrice.toFixed(2) + '€';
+            displayCartSummary();
+            alert(productName + " u shtua në shportë!");
+        }
+
+        function displayCartSummary() {
+            const cartSummary = document.getElementById('cartSummary');
+            cartSummary.innerHTML = "<h2>Shporta juaj</h2>";
+            cart.forEach(item => {
+                cartSummary.innerHTML += `<p>${item.productName} - ${item.price.toFixed(2)}€</p>`;
+            });
+            cartSummary.innerHTML += `<p><strong>Totali: ${totalPrice.toFixed(2)}€</strong></p>`;
+            cartSummary.style.display = "block";
+        }
+
+        function viewCart() {
+            document.getElementById('checkout').style.display = 'block';
+            displayCartSummary();
+        }
+
+        function completeCheckout() {
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+
+            if (name && address) {
+                alert(`Faleminderit, ${name}! Porosia juaj do të dërgohet tek ${address}.`);
+                cart = [];
+                totalPrice = 0;
+                document.getElementById('cart').innerText = '0';
+                document.getElementById('totalPrice').innerText = '0.00€';
+                document.getElementById('checkout').style.display = 'none';
+                document.getElementById('cartSummary').innerHTML = '';
+            } else {
+                alert("Ju lutem plotësoni të gjitha fushat.");
+            }
+        }
+    </script>
+
+</body>
+</html>
